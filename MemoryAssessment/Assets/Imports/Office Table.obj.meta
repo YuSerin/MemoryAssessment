@@ -1,0 +1,162 @@
+fileFormatVersion: 2
+guid: 93797e93c1deada40831930c60847356
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Table_back_1
+    100004: Table_back_2
+    100006: Table_Drawers
+    100008: Table_handle_005
+    100010: Table_handle_006
+    100012: Table_handle_007
+    100014: Table_handle_2
+    100016: Table_Stand_Center
+    100018: Table_stand_left
+    100020: Table_stand_right2
+    100022: Table_standright_1
+    100024: Table_Top
+    400000: //RootNode
+    400002: Table_back_1
+    400004: Table_back_2
+    400006: Table_Drawers
+    400008: Table_handle_005
+    400010: Table_handle_006
+    400012: Table_handle_007
+    400014: Table_handle_2
+    400016: Table_Stand_Center
+    400018: Table_stand_left
+    400020: Table_stand_right2
+    400022: Table_standright_1
+    400024: Table_Top
+    2100000: Table_back_1Mat
+    2100002: Table_back_2Mat
+    2100004: Table_DrawersMat
+    2100006: Table_handle_005Mat
+    2100008: Table_handle_006Mat
+    2100010: Table_handle_007Mat
+    2100012: Table_handle_2Mat
+    2100014: Table_Stand_CenterMat
+    2100016: Table_stand_leftMat
+    2100018: Table_stand_right2Mat
+    2100020: Table_standright_1Mat
+    2100022: Table_TopMat
+    2300000: Table_back_1
+    2300002: Table_back_2
+    2300004: Table_Drawers
+    2300006: Table_handle_005
+    2300008: Table_handle_006
+    2300010: Table_handle_007
+    2300012: Table_handle_2
+    2300014: Table_Stand_Center
+    2300016: Table_stand_left
+    2300018: Table_stand_right2
+    2300020: Table_standright_1
+    2300022: Table_Top
+    3300000: Table_back_1
+    3300002: Table_back_2
+    3300004: Table_Drawers
+    3300006: Table_handle_005
+    3300008: Table_handle_006
+    3300010: Table_handle_007
+    3300012: Table_handle_2
+    3300014: Table_Stand_Center
+    3300016: Table_stand_left
+    3300018: Table_stand_right2
+    3300020: Table_standright_1
+    3300022: Table_Top
+    4300000: Table_back_1
+    4300002: Table_back_2
+    4300004: Table_Drawers
+    4300006: Table_handle_005
+    4300008: Table_handle_006
+    4300010: Table_handle_007
+    4300012: Table_handle_2
+    4300014: Table_Stand_Center
+    4300016: Table_stand_left
+    4300018: Table_stand_right2
+    4300020: Table_standright_1
+    4300022: Table_Top
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
