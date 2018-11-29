@@ -2,23 +2,35 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 using Valve.VR.InteractionSystem;
+using System;
 
 public class DoorButton : MonoBehaviour
 {
     public GameObject door, hinges;
-    public RotateDial passwordSelect;
-
+    public RotateDial passcodeSelect;
+    DataRecording recordData;
+    int buttonId, passcode, currentPasscodeOption;
+    public void Start()
+    {
+        buttonId = Convert.ToInt32(gameObject.tag[6].ToString());
+        door = GameObject.FindWithTag("Door"+buttonId);
+        recordData = GameObject.FindWithTag("Player").GetComponent<DataRecording>();
+    
+    }
     public void OnButtonDown(Hand fromHand)
     {
-        
+        passcode = passcodeSelect.passcodes[buttonId - 1];
+        currentPasscodeOption = passcodeSelect.currentOption;
 
-        if (passwordSelect.currentOption == passwordSelect.passowrd)
+        recordData.writeToFile(buttonId+","+ passcode+","+ currentPasscodeOption);
+
+        if (currentPasscodeOption == passcode)
         {
             ColorSelf(Color.cyan);
             fromHand.TriggerHapticPulse(1000);
             StartCoroutine(RotateForSeconds());
         }
-        // door.transform.Rotate(new Vector3(0, 20, 0));
+       
 
     }
 
@@ -42,12 +54,9 @@ public class DoorButton : MonoBehaviour
 
         while (time > 0)    
         {
-           
             door.transform.Rotate(new Vector3(0, 40 * Time.deltaTime, 0));
             //door.transform.RotateAround(hinges.GetComponent<Renderer>().bounds.center, hinges.transform.up, 20 * Time.deltaTime);
-
             time -= Time.deltaTime;     
-
             yield return null;   
         }
 

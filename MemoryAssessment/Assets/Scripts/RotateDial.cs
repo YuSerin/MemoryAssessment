@@ -13,7 +13,7 @@ public class RotateDial : MonoBehaviour {
     public int currentOption = 0;
     float rotationAngle = 0;
     float eachSegmentAngles;
-    public int passowrd;  
+    public int[] passcodes;  
 
     List<string> shapeOption = new List<string>();
     private void Awake()
@@ -41,6 +41,8 @@ public class RotateDial : MonoBehaviour {
         shapeOption.Add("Red Circle");
 
         eachSegmentAngles = 360 / segments;
+
+        passcodes = new int[] {0,1,2,3,4,5};
     }
     // Use this for initialization
     void Start () {
