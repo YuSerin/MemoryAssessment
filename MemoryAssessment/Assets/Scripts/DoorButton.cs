@@ -10,11 +10,14 @@ public class DoorButton : MonoBehaviour
     public RotateDial passcodeSelect;
     DataRecording recordData;
     int buttonId, passcode, currentPasscodeOption;
+    AudioSource audioSource; 
+
     public void Start()
     {
         buttonId = Convert.ToInt32(gameObject.tag[6].ToString());
         door = GameObject.FindWithTag("Door"+buttonId);
         recordData = GameObject.FindWithTag("Player").GetComponent<DataRecording>();
+        audioSource = GetComponent<AudioSource>();
     
     }
     public void OnButtonDown(Hand fromHand)
@@ -22,13 +25,14 @@ public class DoorButton : MonoBehaviour
         passcode = passcodeSelect.passcodes[buttonId - 1];
         currentPasscodeOption = passcodeSelect.currentOption;
 
-        recordData.writeToFile(buttonId+","+ passcode+","+ currentPasscodeOption);
+        recordData.writeToFile(Time.time+","+ buttonId+","+ passcode+","+ currentPasscodeOption);
 
         if (currentPasscodeOption == passcode)
         {
             ColorSelf(Color.cyan);
             fromHand.TriggerHapticPulse(1000);
             StartCoroutine(RotateForSeconds());
+            audioSource.Play();
         }
        
 

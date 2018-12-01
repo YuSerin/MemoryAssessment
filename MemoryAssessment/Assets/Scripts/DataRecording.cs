@@ -37,7 +37,7 @@ public class DataRecording : MonoBehaviour {
                     writer = new StreamWriter("Assets/Output_files/" + fileName, true);
                     isFileCreatedProcessedData = true;
 
-                    writer.WriteLine("Room_number,passcode,entered_passcode");
+                    writer.WriteLine("Time,Room_number,passcode,entered_passcode");
                 }
                 catch (IOException e)
                 {
