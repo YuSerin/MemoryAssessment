@@ -19,6 +19,7 @@ public class RotateDial : MonoBehaviour {
     private void Awake()
     {
         trackedObj = GetComponent<SteamVR_Behaviour_Pose>();
+
         shapeOption.Add("Red Rhombus");
 
         shapeOption.Add("Blue Triangle");
