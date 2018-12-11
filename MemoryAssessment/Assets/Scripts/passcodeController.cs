@@ -10,10 +10,14 @@ public class passcodeController : MonoBehaviour {
     public GameObject[] passcodes;
     public Material[] colors;
     public GameObject[] shapes;
-    
+    public GameObject[] rooms;
 
     void Start () {
-        numberOfRooms = Random.Range(1, 4) * 2;  
+        for (int i = 2; i < 6; i++)
+        {
+            rooms[i].SetActive(false);
+        }
+            numberOfRooms = Random.Range(1, 4) * 2;  
         Debug.Log("Number of Rooms: "+ numberOfRooms);
 
         for (int i = 0; i < numberOfRooms; i++) {
@@ -22,7 +26,9 @@ public class passcodeController : MonoBehaviour {
             colorId = passcodeId / 4;
             shapeId = passcodeId % 4;           
             Instantiate(shapes[shapeId], passcodes[i].transform.position, Quaternion.Euler(new Vector3(0,0,90))).transform.GetChild(0).GetComponent<Renderer>().material = colors[colorId];
-            Debug.Log("item: " + (i + 1) + " is " + colors[colorId].name + " " + shapes[shapeId].name);
+            //Debug.Log("item: " + (i + 1) + " is " + colors[colorId].name + " " + shapes[shapeId].name);
+            rooms[i].SetActive(true);
+            
         }
     }
 	
