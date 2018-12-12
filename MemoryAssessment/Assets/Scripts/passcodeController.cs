@@ -1,23 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class passcodeController : MonoBehaviour {
     public int numberOfRooms;
+    public Text numberOfRoomsText;
     public int[] passcodeIdOrder = new int[6];
     int passcodeId, shapeId, colorId;
-
+   
     public GameObject[] passcodes;
     public Material[] colors;
     public GameObject[] shapes;
-    public GameObject[] rooms;
-
+    public GameObject[] rooms, doors;
+    public Transform[] footSteps;
+    public GameObject outsideArea;
     void Start () {
         for (int i = 2; i < 6; i++)
         {
             rooms[i].SetActive(false);
         }
-            numberOfRooms = Random.Range(1, 4) * 2;  
+        numberOfRooms = Random.Range(1, 4) * 2;
+        numberOfRoomsText.text = numberOfRooms + " rooms.";
         Debug.Log("Number of Rooms: "+ numberOfRooms);
 
         for (int i = 0; i < numberOfRooms; i++) {
@@ -30,6 +34,8 @@ public class passcodeController : MonoBehaviour {
             rooms[i].SetActive(true);
             
         }
+
+        outsideArea.transform.localPosition= new Vector3(-2.88f, 0, -7.3f + ((6- numberOfRooms) *3));
     }
 	
 	

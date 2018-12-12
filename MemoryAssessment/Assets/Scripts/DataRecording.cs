@@ -10,11 +10,16 @@ public class DataRecording : MonoBehaviour {
     string fileName;
     public string testSubjectName;
     StreamWriter writer;
+    public passcodeController passController;
 
     // Use this for initialization
     void Start () {
 
         creatFileToWrite();
+        if (!passController)
+        {
+            passController = GameObject.FindWithTag("PasscodeController").GetComponent<passcodeController>();
+        }
 
     }
 	
@@ -36,7 +41,7 @@ public class DataRecording : MonoBehaviour {
                     fileName = testSubjectName + "_Report_" + System.DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss") + ".csv";
                     writer = new StreamWriter("Assets/Output_files/" + fileName, true);
                     isFileCreatedProcessedData = true;
-
+                    writer.WriteLine("number_of_rooms," + passController.numberOfRooms);
                     writer.WriteLine("Time,Room_number,passcode,entered_passcode");
                 }
                 catch (IOException e)

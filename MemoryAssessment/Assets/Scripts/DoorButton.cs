@@ -6,38 +6,51 @@ using System;
 
 public class DoorButton : MonoBehaviour
 {
-    public GameObject door, hinges;
-    public RotateDial passcodeSelect;
+    GameObject door, player;
+    Transform playerVRComponent;
     DataRecording recordData;
-    int buttonId, passcode, currentPasscodeOption;
+    int roomNumber, passcode, currentPasscodeOption;
     AudioSource audioSource;
-    public passcodeController passController;
+    passcodeController passController;
 
     public void Start()
     {
         if (!passController) {
-            passController = GameObject.FindWithTag("PasscodeController").GetComponent<passcodeController>();
+            passController = GameObject.FindWithTag("PasscodeController").GetComponent<passcodeController>();            
         }
-        buttonId = Convert.ToInt32(gameObject.tag[6].ToString());
-        door = GameObject.FindWithTag("Door"+buttonId);
+
+        player = GameObject.FindWithTag("Player");
+        playerVRComponent= player.transform.GetChild(0);
+
+        roomNumber = Convert.ToInt32(transform.parent.transform.parent.gameObject.tag[4].ToString());        
         recordData = GameObject.FindWithTag("Player").GetComponent<DataRecording>();
         audioSource = GetComponent<AudioSource>();
-    
+        
+        passcode = passController.passcodeIdOrder[roomNumber - 1];        
+        string currentPasscodeString = gameObject.name.Substring(8);
+        currentPasscodeOption = Convert.ToInt32(currentPasscodeString);
+
+        
+        //Debug.Log("Room no. " + roomNumber + ", passcode: " + passcode + ", currentPasscodeOption: " + currentPasscodeOption);
+
+
     }
     public void OnButtonDown(Hand fromHand)
     {
-        passcode = passController.passcodeIdOrder[buttonId - 1];
-        currentPasscodeOption = passcodeSelect.currentOption;
+       
 
-        Debug.Log("passcode: " + passcode + ", currentPasscodeOption: " + currentPasscodeOption);
+        //Debug.Log("Room no. " + roomNumber +", passcode: " + passcode + ", currentPasscodeOption: " + currentPasscodeOption);
+        
 
-        recordData.writeToFile(Time.time+","+ buttonId+","+ passcode+","+ currentPasscodeOption);
+        recordData.writeToFile(Time.time+","+ roomNumber + ","+ passcode+","+ currentPasscodeOption);
 
         if (currentPasscodeOption == passcode)
         {
-            ColorSelf(Color.cyan);
-            fromHand.TriggerHapticPulse(1000);
-            StartCoroutine(RotateForSeconds());
+            ColorSelf(Color.green);
+            fromHand.TriggerHapticPulse(50000);
+            StartCoroutine(slideForSeconds());
+            //StartCoroutine(movePlayer());
+            Invoke("movePlayer", 2.0f);
             audioSource.Play();
         }
        
@@ -49,26 +62,52 @@ public class DoorButton : MonoBehaviour
         ColorSelf(Color.white);
     }
 
+    public void OnButtonStay(Hand fromHand)
+    {
+        if (currentPasscodeOption == passcode)
+        {
+            ColorSelf(Color.green);
+        }
+        else
+        {
+            ColorSelf(Color.red);
+        }
+    }
+
     private void ColorSelf(Color newColor)
     {
-        Renderer[] renderers = this.GetComponentsInChildren<Renderer>();
+        Renderer[] renderers = this.GetComponents<Renderer>();
         for (int rendererIndex = 0; rendererIndex < renderers.Length; rendererIndex++)
         {
             renderers[rendererIndex].material.color = newColor;
         }
     }
 
-    IEnumerator RotateForSeconds() 
+    IEnumerator slideForSeconds() 
     {
-        float time = 2;     
-
+        float time = 2;
+        
+        door = passController.doors[roomNumber - 1];
         while (time > 0)    
         {
-            door.transform.Rotate(new Vector3(0, 40 * Time.deltaTime, 0));
-            //door.transform.RotateAround(hinges.GetComponent<Renderer>().bounds.center, hinges.transform.up, 20 * Time.deltaTime);
+            door.transform.Translate(new Vector3(0.008f, 0, 0));           
             time -= Time.deltaTime;     
             yield return null;   
         }
 
+        while (time < 0 && time > -2)
+        {
+            door.transform.Translate(new Vector3(-0.008f, 0, 0));            
+            time -= Time.deltaTime;
+            yield return null;
+        }
+    }
+
+    void movePlayer() {
+        Debug.Log("player: "+ player.transform.position + ", "+ passController.footSteps[roomNumber-1].position);
+        player.transform.position = passController.footSteps[roomNumber-1].position;
+        playerVRComponent.transform.localPosition = new Vector3(0, 0, 0);
+        //Vector3.Lerp(player.transform.position, passController.footSteps[roomNumber].position, 2.0f);
+     
     }
 }
